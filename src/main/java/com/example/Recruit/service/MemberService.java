@@ -13,15 +13,23 @@ public class MemberService {
     private MemberRepository memberRepository;
 
     public MemberEntity create(final MemberEntity memberEntity){
+        System.out.println("memberEntity: "+ memberEntity);
+
         if(memberEntity == null || memberEntity.getUserId()==null){
+            System.out.println("error1");
             throw new RuntimeException("Invalid arguments");
         }
         final String userId = memberEntity.getUserId();
         if(memberRepository.existsByUserId(userId)){
+            System.out.println("error2");
             log.warn("UserId already exists {}",userId);
             throw new RuntimeException("UserId already exists");
         }
         return memberRepository.save(memberEntity);
+    }
+
+    public MemberEntity getByCredentials(final String userId, final String password){
+        return memberRepository;
     }
 
 }

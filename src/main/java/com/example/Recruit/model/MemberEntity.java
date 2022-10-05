@@ -18,7 +18,7 @@ public class MemberEntity {
     @Id
     @GeneratedValue(generator = "system-uuid")
     @GenericGenerator(name="system-uuid", strategy = "uuid")
-    private Long id;
+    private String id;
 
     @Column(nullable = false)
     private String username;

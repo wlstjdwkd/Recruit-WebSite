@@ -21,6 +21,7 @@ public class MemberController {
 
     @PostMapping("/signup")
     public ResponseEntity<?> registerMember(@RequestBody MemberDTO memberDTO){
+        System.out.println("back signup "+memberDTO);
         try{
             MemberEntity member = MemberEntity.builder()
                     .userId(memberDTO.getUserId())
@@ -47,5 +48,10 @@ public class MemberController {
             ResponseDTO responseDTO = ResponseDTO.builder().error(e.getMessage()).build();
             return ResponseEntity.badRequest().body(responseDTO);
         }
+    }
+
+    @PostMapping("/login")
+    public ResponseEntity<?> login(@RequestBody MemberDTO memberDTO){
+        MemberEntity member = memberService;
     }
 }

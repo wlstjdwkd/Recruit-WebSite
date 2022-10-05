@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 @Data
 public class MemberDTO {
     private String token;
-    private Long id;
+    private String id;
     private String email;
     private String username;
     private String userId;

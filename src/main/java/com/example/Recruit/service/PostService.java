@@ -8,6 +8,6 @@ import org.springframework.stereotype.Service;
 @Slf4j
 @Service
 public class PostService {
-    @Autowired
-    private PostRepository postRepository;
+//    @Autowired
+//    private PostRepository postRepository;
 }
