@@ -20,6 +20,10 @@ public class PostService {
         return postRepository.findByUserId(entity.getUserId());
     }
 
+    public List<PostEntity> retrieveAll(){
+        return postRepository.findAll();
+    }
+
     public void validate(final PostEntity entity){
         if(entity == null){
             throw new RuntimeException("Entity cannot be null");

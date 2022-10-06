@@ -8,10 +8,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -48,5 +45,15 @@ public class PostController {
             ResponseDTO<PostDTO> response = ResponseDTO.<PostDTO>builder().error(error).build();
             return ResponseEntity.badRequest().body(response);
         }
+    }
+
+    @GetMapping
+    public ResponseEntity<?> retrieveAll(){
+        List<PostEntity> entities =postService.retrieveAll();
+        List<PostDTO> dtos = entities.stream().map(PostDTO::new).collect(Collectors.toList());
+        ResponseDTO<PostDTO> response = ResponseDTO.<PostDTO>builder().data(dtos).build();
+
+        //HTTP 200
+        return ResponseEntity.ok().body(response);
     }
 }

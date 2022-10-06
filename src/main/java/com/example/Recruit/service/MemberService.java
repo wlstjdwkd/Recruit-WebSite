@@ -1,10 +1,13 @@
 package com.example.Recruit.service;
 
 import com.example.Recruit.model.MemberEntity;
+import com.example.Recruit.model.PostEntity;
 import com.example.Recruit.persistence.MemberRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Slf4j
 @Service
@@ -28,8 +31,16 @@ public class MemberService {
         return memberRepository.save(memberEntity);
     }
 
+
     public MemberEntity getByCredentials(final String userId, final String password){
         return memberRepository.findByUserIdAndPassword(userId, password);
     }
+
+//    public void validate(final PostEntity entity){
+//        if(entity==null){
+//            throw new RuntimeException("Entity cannot be null");
+//        }
+//    }
+
 
 }
