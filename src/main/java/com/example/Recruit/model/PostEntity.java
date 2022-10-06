@@ -31,5 +31,5 @@ public class PostEntity {
     private String technic;
     //프로젝트 설명
     private String explan;
-    private Integer currentPersion;
+    private Integer currentPerson;
 }

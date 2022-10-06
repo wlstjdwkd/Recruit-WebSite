@@ -1,10 +1,7 @@
 package com.example.Recruit.dto;
 
 import com.example.Recruit.model.PostEntity;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 @Builder
 @NoArgsConstructor
@@ -21,7 +18,9 @@ public class PostDTO {
     private String technic;
     //프로젝트 설명
     private String explan;
-    private Integer currentPersion;
+
+    @Builder.Default
+    private Integer currentPerson = 0;
 
     public PostDTO(final PostEntity entity){
         this.id=entity.getId();
@@ -32,7 +31,7 @@ public class PostDTO {
         this.person=entity.getPerson();
         this.technic=entity.getTechnic();
         this.explan=entity.getExplan();
-        this.currentPersion=entity.getCurrentPersion();
+        this.currentPerson=entity.getCurrentPerson();
     }
 
     public static PostEntity toEntity(final PostDTO dto){
@@ -42,9 +41,10 @@ public class PostDTO {
                 .title(dto.getTitle())
                 .image(dto.getImage())
                 .region(dto.getRegion())
+                .person(dto.getPerson())
                 .technic(dto.getTechnic())
                 .explan(dto.getExplan())
-                .currentPersion(dto.getCurrentPersion())
+                .currentPerson(dto.getCurrentPerson())
                 .build();
     }
 }

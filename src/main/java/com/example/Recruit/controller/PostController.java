@@ -32,7 +32,7 @@ public class PostController {
             //service.create를 통해 repository에 entity 저장
             //이때 넘어오는 값이 없을 수도 있으므로 List가 아닌 Optional로 한다.
             List<PostEntity> entities = postService.create(entity);
-
+            System.out.println("createPost + "+ entity);
             //entities를 dtos로 스트림 변환
             List<PostDTO> dtos = entities.stream().map(PostDTO::new).collect(Collectors.toList());
 
@@ -50,6 +50,7 @@ public class PostController {
     @GetMapping
     public ResponseEntity<?> retrieveAll(){
         List<PostEntity> entities =postService.retrieveAll();
+        System.out.println("전체 목록 조회 + "+ entities);
         List<PostDTO> dtos = entities.stream().map(PostDTO::new).collect(Collectors.toList());
         ResponseDTO<PostDTO> response = ResponseDTO.<PostDTO>builder().data(dtos).build();
 
