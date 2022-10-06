@@ -29,7 +29,7 @@ public class MemberService {
     }
 
     public MemberEntity getByCredentials(final String userId, final String password){
-        return memberRepository;
+        return memberRepository.findByUserIdAndPassword(userId, password);
     }
 
 }

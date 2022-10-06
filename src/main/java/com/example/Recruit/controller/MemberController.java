@@ -3,6 +3,7 @@ package com.example.Recruit.controller;
 import com.example.Recruit.dto.MemberDTO;
 import com.example.Recruit.dto.ResponseDTO;
 import com.example.Recruit.model.MemberEntity;
+import com.example.Recruit.security.TokenProvider;
 import com.example.Recruit.service.MemberService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +19,9 @@ import org.springframework.web.bind.annotation.RestController;
 public class MemberController {
     @Autowired
     private MemberService memberService;
+
+    @Autowired
+    private TokenProvider tokenProvider;
 
     @PostMapping("/signup")
     public ResponseEntity<?> registerMember(@RequestBody MemberDTO memberDTO){
@@ -52,6 +56,20 @@ public class MemberController {
 
     @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody MemberDTO memberDTO){
-        MemberEntity member = memberService;
+        MemberEntity member = memberService.getByCredentials(memberDTO.getUserId(), memberDTO.getPassword());
+        if(member!=null){
+            final String token = tokenProvider.create(member);
+            final MemberDTO responseMemberDTO = MemberDTO.builder()
+                    .userId(member.getUserId())
+                    .id(member.getId())
+                    .token(token)
+                    .build();
+            return ResponseEntity.ok().body(responseMemberDTO);
+        } else{
+            ResponseDTO responseDTO = ResponseDTO.builder()
+                    .error("Login failed")
+                    .build();
+            return ResponseEntity.badRequest().body(responseDTO);
+        }
     }
 }
