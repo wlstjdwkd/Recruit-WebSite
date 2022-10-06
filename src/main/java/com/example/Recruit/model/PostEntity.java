@@ -21,8 +21,8 @@ public class PostEntity {
     @Id
     @GeneratedValue(generator = "system-uuid")
     @GenericGenerator(name="system-uuid", strategy = "uuid")
-    private Long id;
-    private Long userId;
+    private String id;
+    private String userId;
     private String title;
     private String image;
     private String region;

@@ -11,8 +11,8 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Data
 public class PostDTO {
-    private Long id;
-    private Long userId;
+    private String id;
+    private String userId;
     private String title;
     private String image;
     private String region;
