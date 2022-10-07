@@ -63,7 +63,9 @@ public class PostController {
     public ResponseEntity<?> retrievePost(@RequestBody PostDTO postDTO){
         System.out.println("postId = "+ postDTO);
         Optional<PostEntity> entities = postService.retrievePost(postDTO.getId());
+        System.out.println("entities: "+entities);
         List<PostDTO> dtos = entities.stream().map(PostDTO::new).collect(Collectors.toList());
+        System.out.println("dtos: "+dtos);
         ResponseDTO<PostDTO> response = ResponseDTO.<PostDTO>builder().data(dtos).build();
 
         return ResponseEntity.ok().body(response);
