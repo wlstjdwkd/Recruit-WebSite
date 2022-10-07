@@ -1,24 +1,41 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import Top from "./routes/Top";
+import React, { useState, useEffect } from "react";
+import { call } from "./service/ApiService";
+
+// 메인페이지
 
 function App() {
+  const [items, setItems] = useState([]);
+  useEffect(() => {
+    call("/post", "GET", null)
+      .then((response) => response.data)
+      .then((items) => {
+        setItems(items);
+      });
+  }, []);
+
+  
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Top></Top>
+
+      <div className="container">
+        <h2>모집글</h2>
+        <div className="row">
+          {items.map((item) => (
+            <div className="col-3">
+              <p className="d-block">{/* 이미지 */}</p>
+              <p className="d-block">{item.title}</p>
+              <p className="d-block">
+                모집완료 {item.currentPerson}/{item.person}
+              </p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </>
   );
 }
 
