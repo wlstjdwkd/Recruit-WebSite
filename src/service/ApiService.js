@@ -19,7 +19,7 @@ export function call(api, method, request) {
   if (request) {
     options.body = JSON.stringify(request);
   }
-  console.log();
+  console.log(options.body);
   return fetch(options.url, options)
     .then((response) =>
       response.json().then((json) => {
@@ -99,3 +99,12 @@ export function postCreate(postDTO) {
 //모집글 전체 조회
 export function postReadAll(postDTO) {}
 
+// //해당 모집글 조회
+// export function postRead(postDTO){
+//   return call("/post/postView","GET", postDTO)
+//   .then((response) =>{
+//     if (response.id){
+//       window.location.href="/postView/${postId}";
+//     }
+//   })
+// }

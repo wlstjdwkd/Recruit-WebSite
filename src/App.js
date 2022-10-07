@@ -2,6 +2,7 @@ import "./App.css";
 import Top from "./routes/Top";
 import React, { useState, useEffect } from "react";
 import { call } from "./service/ApiService";
+import { Link, Navigate } from "react-router-dom";
 
 // 메인페이지
 
@@ -14,8 +15,7 @@ function App() {
         setItems(items);
       });
   }, []);
-
-  
+  let data1;
 
   return (
     <>
@@ -26,11 +26,16 @@ function App() {
         <div className="row">
           {items.map((item) => (
             <div className="col-3">
-              <p className="d-block">{/* 이미지 */}</p>
-              <p className="d-block">{item.title}</p>
-              <p className="d-block">
-                모집완료 {item.currentPerson}/{item.person}
-              </p>
+              <Link
+                className="nav-link btn btn-light"
+                to={`/postView/${item.id}`}
+              >
+                <p className="d-block">{/* 이미지 */}</p>
+                <p className="d-block">{item.title}</p>
+                <p className="d-block">
+                  모집완료 {item.currentPerson}/{item.person}
+                </p>
+              </Link>
             </div>
           ))}
         </div>
