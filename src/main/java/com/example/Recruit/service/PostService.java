@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Slf4j
 @Service
@@ -22,6 +23,10 @@ public class PostService {
 
     public List<PostEntity> retrieveAll(){
         return postRepository.findAll();
+    }
+
+    public Optional<PostEntity> retrievePost(final String id){
+        return postRepository.findById(id);
     }
 
     public void validate(final PostEntity entity){
