@@ -108,3 +108,22 @@ export function postReadAll(postDTO) {}
 //     }
 //   })
 // }
+
+//지원 신청
+export function appliCreate(appliDTO) {
+  return call("/appli", "POST", appliDTO)
+    .then((response) => {
+      if (response.id) {
+        window.location.href = "/";
+      }
+    })
+    .catch((error) => {
+      console.log("Ooops!");
+      console.log(error.status);
+      console.log("Ooops!");
+      if (error.status === 403) {
+        window.location.href = "/appli/appliCreate";
+      }
+      return Promise.reject(error);
+    });
+}
