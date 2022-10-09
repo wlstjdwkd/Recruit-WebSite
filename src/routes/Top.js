@@ -35,6 +35,11 @@ function Top() {
           ) : (
             <ul className="nav justify-content-end">
               <li className="nav-item">
+                <Link className="nav-link btn btn-light" to="/selectPerson">
+                  지원 현황
+                </Link>
+              </li>
+              <li className="nav-item">
                 <Link className="nav-link btn btn-light" to="/postCreate">
                   모임 생성
                 </Link>

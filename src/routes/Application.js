@@ -5,7 +5,6 @@ import { appliCreate } from "../service/ApiService";
 
 function Application() {
   const location = useLocation();
-  console.log(location.state.item.id);
   const title = location.state.item.title;
   const [reason, setReason] = useState("");
   const onAppli = async (e) => {

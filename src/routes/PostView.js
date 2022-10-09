@@ -18,6 +18,7 @@ function PostView() {
       });
   }, []);
   console.log(items);
+  console.log(localStorage.getItem("USERID"));
   if (items) {
     return (
       <>
@@ -27,13 +28,19 @@ function PostView() {
           <dt>모집 현황</dt>
           <p className="d-block">
             {items[0].currentPerson} / {items[0].person}
-            <Link
-              className="btn btn-warning"
-              to="/application"
-              state={{ item: items[0] }}
-            >
-              지원하기
-            </Link>
+            {items[0].userId === localStorage.getItem("USERID") ? (
+              <Link className="btn btn-warning" to="/selectPerson" state={{item:items[0].id}}>
+                지원현황 보기
+              </Link>
+            ) : (
+              <Link
+                className="btn btn-warning"
+                to="/application"
+                state={{ item: items[0] }}
+              >
+                지원하기
+              </Link>
+            )}
           </p>
           <hr />
           <dt>- 소개</dt>

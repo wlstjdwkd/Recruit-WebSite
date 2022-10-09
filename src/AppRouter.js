@@ -5,6 +5,7 @@ import Login from "./routes/Login";
 import PostCreate from "./routes/PostCreate";
 import PostView from "./routes/PostView";
 import Application from "./routes/Application";
+import SelectPerson from "./routes/SelectPerson";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 function AppRouter() {
@@ -17,6 +18,7 @@ function AppRouter() {
         <Route path="/postCreate" element={<PostCreate />}></Route>
         <Route path="/postView/:postId" element={<PostView />}></Route>
         <Route path="/application" element={<Application />}></Route>
+        <Route path="/selectPerson" element={<SelectPerson />}></Route>
       </Routes>
     </BrowserRouter>
   );

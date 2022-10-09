@@ -16,8 +16,9 @@ function Login() {
     e.preventDefault();
     const req = { userId: userId, password: password };
     login(req);
+    // localStorage.setItem("USERID", userId);
   };
-  
+
   return (
     <>
       <Top></Top>

@@ -35,7 +35,7 @@ export function call(api, method, request) {
       console.log(error.status);
       console.log("Oops!");
       if (error.status === 403) {
-        window.location.href = "/member/login";
+        window.location.href = "/login";
       }
       return Promise.reject(error);
     });
@@ -45,16 +45,20 @@ export function call(api, method, request) {
 export function login(memberDTO) {
   return call("/member/login", "POST", memberDTO).then((response) => {
     if (response.token) {
+      console.log(response.id);
       //local 스토리지에 토큰 저장
       localStorage.setItem("ACCESS_TOKEN", response.token);
+      localStorage.setItem("USERID", response.id);
       //token이 존재하는 경우 메인 페이지로 리디렉트
       window.location.href = "/";
+      // console.log(response.data);
     }
   });
 }
 
 export function logout() {
   localStorage.setItem("ACCESS_TOKEN", null);
+  localStorage.setItem("USERID",null);
   window.location.reload();
 }
 
@@ -71,7 +75,7 @@ export function signup(memberDTO) {
       console.log(error.status);
       console.log("Oops!");
       if (error.status === 403) {
-        window.location.href = "/member/signup";
+        window.location.href = "/signup";
       }
       return Promise.reject(error);
     });
