@@ -15,6 +15,7 @@ function SelectPerson() {
         setItems(items);
       });
   }, []);
+  console.log(items);
   if (items) {
     return (
       <>
