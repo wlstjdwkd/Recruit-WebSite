@@ -14,7 +14,7 @@ function Application() {
       postId: location.state.item.id,
       reason: reason,
     };
-
+    console.log(req);
     appliCreate(req).then((res) => {
       console.log(req);
       window.location.href = "/";

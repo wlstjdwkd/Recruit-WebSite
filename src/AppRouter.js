@@ -6,6 +6,7 @@ import PostCreate from "./routes/PostCreate";
 import PostView from "./routes/PostView";
 import Application from "./routes/Application";
 import SelectPerson from "./routes/SelectPerson";
+import Mypage from "./routes/Mypage";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 function AppRouter() {
@@ -15,6 +16,7 @@ function AppRouter() {
         <Route path="/" element={<App />}></Route>
         <Route path="/signup" element={<Signup />}></Route>
         <Route path="/login" element={<Login />}></Route>
+        <Route path="/mypage" element={<Mypage />}></Route>
         <Route path="/postCreate" element={<PostCreate />}></Route>
         <Route path="/postView/:postId" element={<PostView />}></Route>
         <Route path="/application" element={<Application />}></Route>

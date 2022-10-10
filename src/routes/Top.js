@@ -9,7 +9,9 @@ const ACCESS_TOKEN = "ACCESS_TOKEN";
 function Top() {
   const navigate = useNavigate();
   const accessToken = localStorage.getItem(ACCESS_TOKEN);
+  const username = localStorage.getItem("USERNAME");
   console.log(accessToken);
+  console.log(username);
   const logout = () => {
     localStorage.setItem("ACCESS_TOKEN", null);
     window.location.reload();
@@ -37,6 +39,11 @@ function Top() {
               <li className="nav-item">
                 <Link className="nav-link btn btn-light" to="/selectPerson">
                   지원 현황
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link className="nav-link btn btn-light" to="/mypage">
+                  {username}
                 </Link>
               </li>
               <li className="nav-item">

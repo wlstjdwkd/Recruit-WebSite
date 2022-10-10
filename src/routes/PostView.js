@@ -18,7 +18,9 @@ function PostView() {
       });
   }, []);
   console.log(items);
-  console.log(localStorage.getItem("USERID"));
+  const response = localStorage.getItem("USERID");
+
+  console.log(response.id);
   if (items) {
     return (
       <>
@@ -29,7 +31,11 @@ function PostView() {
           <p className="d-block">
             {items[0].currentPerson} / {items[0].person}
             {items[0].userId === localStorage.getItem("USERID") ? (
-              <Link className="btn btn-warning" to="/selectPerson" state={{item:items[0].id}}>
+              <Link
+                className="btn btn-warning"
+                to="/selectPerson"
+                state={{ item: items[0].id }}
+              >
                 지원현황 보기
               </Link>
             ) : (
