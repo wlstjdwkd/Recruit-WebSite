@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Slf4j
 @Service
@@ -34,6 +35,10 @@ public class MemberService {
 
     public MemberEntity getByCredentials(final String userId, final String password){
         return memberRepository.findByUserIdAndPassword(userId, password);
+    }
+
+    public Optional<MemberEntity> retrieve(final String userId){
+        return memberRepository.findById(userId);
     }
 
 //    public void validate(final PostEntity entity){

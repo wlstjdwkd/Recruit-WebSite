@@ -8,10 +8,13 @@ import com.example.Recruit.service.MemberService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.web.bind.annotation.*;
+
+import java.lang.reflect.Member;
+import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Slf4j
 @RestController
@@ -62,6 +65,7 @@ public class MemberController {
             final MemberDTO responseMemberDTO = MemberDTO.builder()
                     .userId(member.getUserId())
                     .id(member.getId())
+                    .username(member.getUsername())
                     .token(token)
                     .build();
             return ResponseEntity.ok().body(responseMemberDTO);
@@ -71,5 +75,15 @@ public class MemberController {
                     .build();
             return ResponseEntity.badRequest().body(responseDTO);
         }
+    }
+
+    //내정보 조회
+    @GetMapping
+    public ResponseEntity<?> retrieveMember(@AuthenticationPrincipal String userId){
+        Optional<MemberEntity> entities = memberService.retrieve(userId);
+        List<MemberDTO> dtos = entities.stream().map(MemberDTO::new).collect(Collectors.toList());
+        ResponseDTO<MemberDTO> response = ResponseDTO.<MemberDTO>builder().data(dtos).build();
+
+        return ResponseEntity.ok().body(response);
     }
 }

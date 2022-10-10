@@ -13,6 +13,8 @@ import lombok.NoArgsConstructor;
 public class AppliDTO {
     private String id;
     private String userId;
+
+    private String username;
     private String postId;
     private String reason;
     private boolean selectPerson;
@@ -20,6 +22,7 @@ public class AppliDTO {
     public AppliDTO(final AppliEntity entity){
         this.id=entity.getId();
         this.userId=entity.getUserId();
+        this.username=entity.getUsername();
         this.postId=entity.getPostId();
         this.reason=entity.getReason();
         this.selectPerson=entity.getSelectPerson();
@@ -30,6 +33,7 @@ public class AppliDTO {
         return AppliEntity.builder()
                 .id(dto.getId())
                 .userId(dto.getUserId())
+                .username(dto.getUsername())
                 .postId(dto.getPostId())
                 .reason(dto.getReason())
                 .selectPerson(dto.isSelectPerson()).build();

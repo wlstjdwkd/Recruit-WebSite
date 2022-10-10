@@ -23,6 +23,7 @@ public class AppliEntity {
     @GenericGenerator(name="system-uuid", strategy = "uuid")
     private String id;
     private String userId;
+    private String username;
     private String postId;
     private String reason;
     private Boolean selectPerson;
