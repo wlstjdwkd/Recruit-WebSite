@@ -5,6 +5,7 @@ import com.example.Recruit.model.PostEntity;
 import com.example.Recruit.persistence.MemberRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -33,8 +34,13 @@ public class MemberService {
     }
 
 
-    public MemberEntity getByCredentials(final String userId, final String password){
-        return memberRepository.findByUserIdAndPassword(userId, password);
+    public MemberEntity getByCredentials(final String userId, final String password, final PasswordEncoder encoder){
+        final MemberEntity originalMember = memberRepository.findByUserId(userId);
+        if(originalMember!=null&& encoder.matches(password,originalMember.getPassword())){
+            return originalMember;
+        }
+        return null;
+//        return memberRepository.findByUserIdAndPassword(userId, password);
     }
 
     public Optional<MemberEntity> retrieve(final String userId){

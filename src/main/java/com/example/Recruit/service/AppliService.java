@@ -25,6 +25,16 @@ public class AppliService {
         return appliRepository.findByPostId(id);
     }
 
+    public Optional<AppliEntity> update(final AppliEntity entity){
+        if(appliRepository.existsById(entity.getId())){
+            appliRepository.save(entity);
+        }
+        else{
+            throw new RuntimeException("Unknown id");
+        }
+        return appliRepository.findById(entity.getId());
+    }
+
     public void validate(final AppliEntity entity){
         if(entity == null){
             throw new RuntimeException("Entity cannot be null");

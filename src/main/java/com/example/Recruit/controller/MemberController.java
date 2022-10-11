@@ -9,6 +9,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import java.lang.reflect.Member;
@@ -26,6 +28,8 @@ public class MemberController {
     @Autowired
     private TokenProvider tokenProvider;
 
+    private PasswordEncoder passwordEncoder= new BCryptPasswordEncoder();
+
     @PostMapping("/signup")
     public ResponseEntity<?> registerMember(@RequestBody MemberDTO memberDTO){
         System.out.println("back signup "+memberDTO);
@@ -34,7 +38,7 @@ public class MemberController {
                     .userId(memberDTO.getUserId())
                     .email(memberDTO.getEmail())
                     .username(memberDTO.getUsername())
-                    .password(memberDTO.getPassword())
+                    .password(passwordEncoder.encode(memberDTO.getPassword()))
                     .phone(memberDTO.getPhone())
                     .intro(memberDTO.getIntro())
                     .technic(memberDTO.getTechnic())
@@ -59,7 +63,7 @@ public class MemberController {
 
     @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody MemberDTO memberDTO){
-        MemberEntity member = memberService.getByCredentials(memberDTO.getUserId(), memberDTO.getPassword());
+        MemberEntity member = memberService.getByCredentials(memberDTO.getUserId(), memberDTO.getPassword(),passwordEncoder);
         if(member!=null){
             final String token = tokenProvider.create(member);
             final MemberDTO responseMemberDTO = MemberDTO.builder()

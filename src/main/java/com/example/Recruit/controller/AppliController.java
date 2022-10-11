@@ -59,4 +59,22 @@ public class AppliController {
             return ResponseEntity.badRequest().body(response);
         }
     }
+
+    //선택
+    @PutMapping
+    public ResponseEntity<?> updateCheck(@RequestBody AppliDTO dto){
+        try{
+            AppliEntity entity = AppliDTO.toEntity(dto);
+            System.out.println("updateCheck entity : "+ entity);
+            Optional<AppliEntity> entities = appliService.update(entity);
+            List<AppliDTO> dtos = entities.stream().map(AppliDTO::new).collect(Collectors.toList());
+            ResponseDTO<AppliDTO> response = ResponseDTO.<AppliDTO>builder().data(dtos).build();
+
+            return ResponseEntity.ok().body(response);
+        }catch(Exception e){
+            String error = e.getMessage();
+            ResponseDTO<AppliDTO> response = ResponseDTO.<AppliDTO> builder().error(error).build();
+            return ResponseEntity.badRequest().body(response);
+        }
+    }
 }
