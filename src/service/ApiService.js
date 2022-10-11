@@ -133,3 +133,22 @@ export function appliCreate(appliDTO) {
       return Promise.reject(error);
     });
 }
+
+//지원 확정
+export function confirmSelect(postDTO) {
+  return call("/post", "PUT", postDTO)
+    .then((response) => {
+      if (response.id) {
+        window.location.href = "/";
+      }
+    })
+    .catch((error) => {
+      console.log("Ooops!");
+      console.log(error.status);
+      console.log("Ooops!");
+      if (error.status === 403) {
+        window.location.reload();
+      }
+      return Promise.reject(error);
+    });
+}

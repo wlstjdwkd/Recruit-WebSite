@@ -22,6 +22,7 @@ function PostView() {
 
   console.log(response.id);
   if (items) {
+    console.log(items);
     return (
       <>
         <Top></Top>
@@ -34,7 +35,9 @@ function PostView() {
               <Link
                 className="btn btn-warning"
                 to="/selectPerson"
-                state={{ item: items[0].id }}
+                state={{
+                  item: items[0],
+                }}
               >
                 지원현황 보기
               </Link>

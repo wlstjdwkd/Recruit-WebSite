@@ -13,6 +13,7 @@ function Application() {
     const req = {
       postId: location.state.item.id,
       reason: reason,
+      username: localStorage.getItem("USERNAME"),
     };
     console.log(req);
     appliCreate(req).then((res) => {
