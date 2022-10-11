@@ -70,4 +70,21 @@ public class PostController {
 
         return ResponseEntity.ok().body(response);
     }
+
+    //지원 확정
+    @PutMapping
+    public ResponseEntity<?> updateSelect(@RequestBody PostDTO dto){
+        try{
+            PostEntity entity = PostDTO.toEntity(dto);
+            Optional<PostEntity> entities = postService.update(entity);
+            List<PostDTO> dtos = entities.stream().map(PostDTO::new).collect(Collectors.toList());
+            ResponseDTO<PostDTO> response = ResponseDTO.<PostDTO>builder().data(dtos).build();
+            return ResponseEntity.ok().body(response);
+
+        }catch (Exception e){
+            String error = e.getMessage();
+            ResponseDTO<PostDTO> response = ResponseDTO.<PostDTO> builder().error(error).build();
+            return ResponseEntity.badRequest().body(response);
+        }
+    }
 }

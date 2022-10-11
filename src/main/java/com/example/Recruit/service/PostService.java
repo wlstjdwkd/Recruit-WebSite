@@ -29,6 +29,15 @@ public class PostService {
         return postRepository.findById(id);
     }
 
+    public Optional<PostEntity> update (final PostEntity entity){
+        if(postRepository.existsById(entity.getId())){
+            postRepository.save(entity);
+        }
+        else{
+            throw new RuntimeException("Unknown id");
+        }
+        return postRepository.findById(entity.getId());
+    }
     public void validate(final PostEntity entity){
         if(entity == null){
             throw new RuntimeException("Entity cannot be null");
