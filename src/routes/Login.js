@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Top from "./Top";
 import { login } from "../service/ApiService";
 
@@ -16,7 +16,6 @@ function Login() {
     e.preventDefault();
     const req = { userId: userId, password: password };
     login(req);
-    // localStorage.setItem("USERID", userId);
   };
 
   return (

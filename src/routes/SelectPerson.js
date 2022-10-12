@@ -6,7 +6,6 @@ import { call } from "../service/ApiService";
 function SelectPerson() {
   const location = useLocation();
   const postId = location.state.item.id;
-  // console.log(cnt);
   const req = {
     postId: postId,
   };

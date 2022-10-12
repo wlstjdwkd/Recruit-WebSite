@@ -27,27 +27,6 @@ function Signup() {
     signup(req).then((res) => {
       window.location.href = "/";
     });
-    // const res = await fetch("http://localhost:8081/member/signup", {
-    //   method: "POST",
-    //   headers: { "Content-Type": "application/json" },
-    //   body: JSON.stringify(req),
-    // });
-
-    // console.log("res: ", res);
-    // const data = await res.json();
-    // if (res.ok) {
-    //   //회원가입 성공
-    //   alert(data.message);
-    //   console.log(data);
-    //   window.location.href = "/";
-    // } else {
-    //   if (res.status === 400) {
-    //     console.log("data: ", data);
-    //   } else {
-    //     //500
-    //     alert(data.message);
-    //   }
-    // }
   };
 
   return (

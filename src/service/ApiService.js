@@ -52,7 +52,6 @@ export function login(memberDTO) {
       localStorage.setItem("USERNAME", response.username);
       //token이 존재하는 경우 메인 페이지로 리디렉트
       window.location.href = "/";
-      // console.log(response);
     }
   });
 }
@@ -101,19 +100,6 @@ export function postCreate(postDTO) {
       return Promise.reject(error);
     });
 }
-
-//모집글 전체 조회
-export function postReadAll(postDTO) {}
-
-// //해당 모집글 조회
-// export function postRead(postDTO){
-//   return call("/post/postView","GET", postDTO)
-//   .then((response) =>{
-//     if (response.id){
-//       window.location.href="/postView/${postId}";
-//     }
-//   })
-// }
 
 //지원 신청
 export function appliCreate(appliDTO) {

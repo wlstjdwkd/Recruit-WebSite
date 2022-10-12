@@ -1,13 +1,11 @@
 import "../App.css";
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-// import { logout } from "../service/ApiService";
 
 const ACCESS_TOKEN = "ACCESS_TOKEN";
 
 function Top() {
-  const navigate = useNavigate();
   const accessToken = localStorage.getItem(ACCESS_TOKEN);
   const username = localStorage.getItem("USERNAME");
   console.log(accessToken);

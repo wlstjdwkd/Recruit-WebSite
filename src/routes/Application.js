@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useLocation } from "react-router-dom";
 import Top from "./Top";
 import { appliCreate } from "../service/ApiService";
@@ -21,7 +21,6 @@ function Application() {
       window.location.href = "/";
     });
   };
-  //   if (title) {
   return (
     <>
       <Top></Top>
@@ -54,6 +53,5 @@ function Application() {
       </div>
     </>
   );
-  //   }
 }
 export default Application;
