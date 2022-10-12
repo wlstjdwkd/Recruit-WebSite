@@ -8,14 +8,12 @@ function Application() {
   const title = location.state.item.title;
   const [reason, setReason] = useState("");
   const onAppli = async (e) => {
-    console.log("front appli");
     e.preventDefault();
     const req = {
       postId: location.state.item.id,
       reason: reason,
       username: localStorage.getItem("USERNAME"),
     };
-    console.log(req);
     appliCreate(req).then((res) => {
       console.log(req);
       window.location.href = "/";

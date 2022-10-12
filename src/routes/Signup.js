@@ -12,7 +12,6 @@ function Signup() {
   const [intro, setIntro] = useState("");
 
   const onRegister = async (e) => {
-    console.log("front signup");
     e.preventDefault();
 
     const req = {

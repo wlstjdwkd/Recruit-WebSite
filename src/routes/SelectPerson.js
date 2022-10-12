@@ -15,15 +15,12 @@ function SelectPerson() {
   };
   const [items, setItems] = useState(null);
   useEffect(() => {
-    console.log("useEffect");
     retrieveSelect(req).then((items) => {
       setItems(items);
     });
   }, []);
   const checkboxEventHandler = (item) => {
-    console.log(item.target.checked);
     const words = item.target.value.split(",");
-    console.log(words);
     const req2 = {
       id: words[0],
       postId: postId,
@@ -60,7 +57,6 @@ function SelectPerson() {
       window.location.href = "/";
     });
   };
-  console.log(items);
   if (items) {
     return (
       <>

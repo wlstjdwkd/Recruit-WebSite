@@ -6,21 +6,15 @@ import Top from "./Top";
 function PostView() {
   let postId = useParams();
   const [items, setItems] = useState(null);
-  console.log(postId.postId);
   const req = { id: postId.postId };
 
   useEffect(() => {
-    console.log("useEffect");
     retrievePost(req).then((items) => {
       setItems(items);
     });
   }, []);
-  console.log(items);
-  const response = localStorage.getItem("USERID");
 
-  console.log(response.id);
   if (items) {
-    console.log(items);
     return (
       <>
         <Top></Top>

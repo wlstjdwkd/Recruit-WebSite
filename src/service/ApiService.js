@@ -19,14 +19,12 @@ export function call(api, method, request) {
   if (request) {
     options.body = JSON.stringify(request);
   }
-  console.log(options.body);
   return fetch(options.url, options)
     .then((response) =>
       response.json().then((json) => {
         if (!response.ok) {
           return Promise.reject(json);
         }
-        console.log(json);
         return json;
       })
     )
@@ -45,7 +43,6 @@ export function call(api, method, request) {
 export function login(memberDTO) {
   return call("/member/login", "POST", memberDTO).then((response) => {
     if (response.token) {
-      console.log(response.id);
       //local 스토리지에 토큰 저장
       localStorage.setItem("ACCESS_TOKEN", response.token);
       localStorage.setItem("USERID", response.id);

@@ -7,14 +7,12 @@ function Mypage() {
   const userId = useParams();
   const [items, setItems] = useState(null);
   const loginId = localStorage.getItem("USERID");
-  console.log(userId.id);
   const req = { id: userId.id };
   useEffect(() => {
     mypage(req).then((items) => {
       setItems(items);
     });
   }, []);
-  console.log(items);
   if (items) {
     return (
       <>

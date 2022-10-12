@@ -9,8 +9,6 @@ function Top() {
   const accessToken = localStorage.getItem(ACCESS_TOKEN);
   const username = localStorage.getItem("USERNAME");
   const userId = localStorage.getItem("USERID");
-  console.log(accessToken);
-  console.log(userId);
   const logout = () => {
     localStorage.setItem("ACCESS_TOKEN", null);
     window.location.reload();
