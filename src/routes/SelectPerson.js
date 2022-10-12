@@ -1,7 +1,11 @@
 import Top from "./Top";
 import React, { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { call } from "../service/ApiService";
+import {
+  retrieveSelect,
+  checkPerson,
+  confirmPerson,
+} from "../service/ApiService";
 
 function SelectPerson() {
   const location = useLocation();
@@ -12,11 +16,9 @@ function SelectPerson() {
   const [items, setItems] = useState(null);
   useEffect(() => {
     console.log("useEffect");
-    call("/appli/selectPerson", "POST", req)
-      .then((response) => response.data)
-      .then((items) => {
-        setItems(items);
-      });
+    retrieveSelect(req).then((items) => {
+      setItems(items);
+    });
   }, []);
   const checkboxEventHandler = (item) => {
     console.log(item.target.checked);
@@ -31,11 +33,10 @@ function SelectPerson() {
       username: words[3],
     };
     console.log("checkbox event");
-    call("/appli", "PUT", req2)
-      .then((response) => response.data)
-      .then((items) => {
-        setItems(items);
-      });
+
+    checkPerson(req2).then((items) => {
+      setItems(items);
+    });
   };
   const confirmSelect = (e) => {
     var cnt = 0;
@@ -55,7 +56,7 @@ function SelectPerson() {
       title: location.state.item.title,
       userId: location.state.item.userId,
     };
-    call("/post", "PUT", req2).then((response) => {
+    confirmPerson(req2).then((res) => {
       window.location.href = "/";
     });
   };

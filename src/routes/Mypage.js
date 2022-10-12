@@ -1,7 +1,7 @@
 import Top from "./Top";
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { call } from "../service/ApiService";
+import { mypage } from "../service/ApiService";
 
 function Mypage() {
   const userId = useParams();
@@ -10,11 +10,9 @@ function Mypage() {
   console.log(userId.id);
   const req = { id: userId.id };
   useEffect(() => {
-    call("/member/mypage", "POST", req)
-      .then((response) => response.data)
-      .then((items) => {
-        setItems(items);
-      });
+    mypage(req).then((items) => {
+      setItems(items);
+    });
   }, []);
   console.log(items);
   if (items) {
@@ -25,8 +23,8 @@ function Mypage() {
           <h2>마이 페이지</h2>
           <dt>아이디</dt>
           <input type="text" readOnly="true" value={items[0].userId}></input>
-          <dt>비밀번호</dt>
-          <input type="text" readOnly="true" value={items[0].password}></input>
+          {/* <dt>비밀번호</dt>
+          <input type="text" readOnly="true" value={items[0].password}></input> */}
           <dt>성명</dt>
           <input type="text" readOnly="true" value={items[0].username}></input>
           <dt>이메일</dt>

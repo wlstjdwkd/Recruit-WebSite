@@ -56,6 +56,7 @@ export function login(memberDTO) {
   });
 }
 
+//로그아웃
 export function logout() {
   localStorage.setItem("ACCESS_TOKEN", null);
   localStorage.setItem("USERID", null);
@@ -82,6 +83,36 @@ export function signup(memberDTO) {
     });
 }
 
+//마이페이지 조회
+export function mypage(memberDTO) {
+  return call("/member/mypage", "POST", memberDTO)
+    .then((response) => response.data)
+    .catch((error) => {
+      console.log("Oops!");
+      console.log(error.status);
+      console.log("Oops!");
+      if (error.status === 403) {
+        window.location.href = "/";
+      }
+      return Promise.reject(error);
+    });
+}
+
+//메인페이지 조회
+export function retrieveMain() {
+  return call("/post", "GET", null)
+    .then((response) => response.data)
+    .catch((error) => {
+      console.log("Oops!");
+      console.log(error.status);
+      console.log("Oops!");
+      if (error.status === 403) {
+        window.location.href = "/";
+      }
+      return Promise.reject(error);
+    });
+}
+
 //모집글 등록
 export function postCreate(postDTO) {
   return call("/post", "POST", postDTO)
@@ -96,6 +127,21 @@ export function postCreate(postDTO) {
       console.log("Oops!");
       if (error.status === 403) {
         window.location.href = "/post/postCreate";
+      }
+      return Promise.reject(error);
+    });
+}
+
+//모집글 조회
+export function retrievePost(postDTO) {
+  return call("/post/postView", "POST", postDTO)
+    .then((response) => response.data)
+    .catch((error) => {
+      console.log("Ooops!");
+      console.log(error.status);
+      console.log("Ooops!");
+      if (error.status === 403) {
+        window.location.href = "/";
       }
       return Promise.reject(error);
     });
@@ -120,8 +166,38 @@ export function appliCreate(appliDTO) {
     });
 }
 
+//모집현황 조회
+export function retrieveSelect(appliDTO) {
+  return call("/appli/selectPerson", "POST", appliDTO)
+    .then((response) => response.data)
+    .catch((error) => {
+      console.log("Ooops!");
+      console.log(error.status);
+      console.log("Ooops!");
+      if (error.status === 403) {
+        window.location.href = "/";
+      }
+      return Promise.reject(error);
+    });
+}
+
+//모집현황 체크박스
+export function checkPerson(appliDTO) {
+  return call("/appli", "PUT", appliDTO)
+    .then((response) => response.data)
+    .catch((error) => {
+      console.log("Ooops!");
+      console.log(error.status);
+      console.log("Ooops!");
+      if (error.status === 403) {
+        window.location.href = "/";
+      }
+      return Promise.reject(error);
+    });
+}
+
 //지원 확정
-export function confirmSelect(postDTO) {
+export function confirmPerson(postDTO) {
   return call("/post", "PUT", postDTO)
     .then((response) => {
       if (response.id) {

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
-import { call } from "../service/ApiService";
+import { retrievePost } from "../service/ApiService";
 import Top from "./Top";
 
 function PostView() {
@@ -11,11 +11,9 @@ function PostView() {
 
   useEffect(() => {
     console.log("useEffect");
-    call("/post/postView", "POST", req)
-      .then((response) => response.data)
-      .then((items) => {
-        setItems(items);
-      });
+    retrievePost(req).then((items) => {
+      setItems(items);
+    });
   }, []);
   console.log(items);
   const response = localStorage.getItem("USERID");

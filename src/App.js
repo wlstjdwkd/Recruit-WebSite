@@ -1,7 +1,7 @@
 import "./App.css";
 import Top from "./routes/Top";
 import React, { useState, useEffect } from "react";
-import { call } from "./service/ApiService";
+import { retrieveMain } from "./service/ApiService";
 import { Link } from "react-router-dom";
 
 // 메인페이지
@@ -9,11 +9,9 @@ import { Link } from "react-router-dom";
 function App() {
   const [items, setItems] = useState([]);
   useEffect(() => {
-    call("/post", "GET", null)
-      .then((response) => response.data)
-      .then((items) => {
-        setItems(items);
-      });
+    retrieveMain().then((items) => {
+      setItems(items);
+    });
   }, []);
 
   return (
