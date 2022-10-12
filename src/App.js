@@ -15,7 +15,6 @@ function App() {
         setItems(items);
       });
   }, []);
-  let data1;
 
   return (
     <>
@@ -33,7 +32,8 @@ function App() {
                 <p className="d-block">{/* 이미지 */}</p>
                 <p className="d-block">{item.title}</p>
                 <p className="d-block">
-                  모집완료 {item.currentPerson}/{item.person}
+                  {item.currentPerson === item.person ? "모집완료" : "모집중"}
+                  {item.currentPerson}/{item.person}
                 </p>
               </Link>
             </div>

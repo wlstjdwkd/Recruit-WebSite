@@ -31,6 +31,7 @@ function PostView() {
           <dt>모집 현황</dt>
           <p className="d-block">
             {items[0].currentPerson} / {items[0].person}
+            {/* {items[0].currentPerson === items[0].person ? "모집완료" : "모집중"} */}
             {items[0].userId === localStorage.getItem("USERID") ? (
               <Link
                 className="btn btn-warning"

@@ -6,11 +6,13 @@ import { call } from "../service/ApiService";
 function SelectPerson() {
   const location = useLocation();
   const postId = location.state.item.id;
+  // console.log(cnt);
   const req = {
     postId: postId,
   };
   const [items, setItems] = useState(null);
   useEffect(() => {
+    console.log("useEffect");
     call("/appli/selectPerson", "POST", req)
       .then((response) => response.data)
       .then((items) => {
@@ -34,10 +36,30 @@ function SelectPerson() {
       .then((response) => response.data)
       .then((items) => {
         setItems(items);
-        window.location.reload();
       });
   };
-  const confirmSelect = (e) => {};
+  const confirmSelect = (e) => {
+    var cnt = 0;
+    items.map((item) => {
+      if (item.selectPerson === true) {
+        cnt++;
+      }
+    });
+    const req2 = {
+      id: location.state.item.id,
+      currentPerson: cnt,
+      explan: location.state.item.explan,
+      image: location.state.item.image,
+      person: location.state.item.person,
+      region: location.state.item.region,
+      technic: location.state.item.technic,
+      title: location.state.item.title,
+      userId: location.state.item.userId,
+    };
+    call("/post", "PUT", req2).then((response) => {
+      window.location.href = "/";
+    });
+  };
   console.log(items);
   if (items) {
     return (
@@ -60,7 +82,9 @@ function SelectPerson() {
             <p>
               {location.state.item.currentPerson}/{location.state.item.person}
             </p>
-            <button class="btn-warning">확정</button>
+            <button class="btn-warning" onClick={confirmSelect}>
+              확정
+            </button>
           </div>
         </div>
       </>
