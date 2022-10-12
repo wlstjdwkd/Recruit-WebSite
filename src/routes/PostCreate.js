@@ -5,6 +5,7 @@ import { postCreate } from "../service/ApiService";
 function PostCreate() {
   const [title, setTitle] = useState("");
   //일단 이미지 보류
+  const [tempFile, setTempFile] = useState();
   const [technic, setTechnic] = useState("");
   const [region, setRegion] = useState("");
   const [person, setPerson] = useState("");
@@ -49,7 +50,12 @@ function PostCreate() {
                 placeholder="프로젝트 명을 입력해 주세요."
               />
               <dt>대표 이미지</dt>
-              //TODO 이미지 나중에
+              <input
+                type="file"
+                onChange={(e) => {
+                  setTempFile(e.target.value);
+                }}
+              />
               <dt>기술 스택</dt>
               <input
                 type="text"

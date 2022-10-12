@@ -1,11 +1,16 @@
 import Top from "./Top";
 import React, { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
 import { call } from "../service/ApiService";
 
 function Mypage() {
+  const userId = useParams();
   const [items, setItems] = useState(null);
+  const loginId = localStorage.getItem("USERID");
+  console.log(userId.id);
+  const req = { id: userId.id };
   useEffect(() => {
-    call("/member", "GET", null)
+    call("/member/mypage", "POST", req)
       .then((response) => response.data)
       .then((items) => {
         setItems(items);
@@ -33,9 +38,13 @@ function Mypage() {
           <dt>자기 소갯말</dt>
           <input type="text" readOnly="true" value={items[0].intro}></input>
           <div>
-            <button type="button" class="btn-warning">
-              회원 탈퇴
-            </button>
+            {userId.id === loginId ? (
+              <button type="button" class="btn-warning">
+                회원 탈퇴
+              </button>
+            ) : (
+              <></>
+            )}
           </div>
         </div>
       </>

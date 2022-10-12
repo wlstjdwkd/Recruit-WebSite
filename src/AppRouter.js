@@ -16,7 +16,7 @@ function AppRouter() {
         <Route path="/" element={<App />}></Route>
         <Route path="/signup" element={<Signup />}></Route>
         <Route path="/login" element={<Login />}></Route>
-        <Route path="/mypage" element={<Mypage />}></Route>
+        <Route path="/mypage/:id" element={<Mypage />}></Route>
         <Route path="/postCreate" element={<PostCreate />}></Route>
         <Route path="/postView/:postId" element={<PostView />}></Route>
         <Route path="/application" element={<Application />}></Route>

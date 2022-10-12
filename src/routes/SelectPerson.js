@@ -1,6 +1,6 @@
 import Top from "./Top";
 import React, { useState, useEffect } from "react";
-import { useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { call } from "../service/ApiService";
 
 function SelectPerson() {
@@ -65,16 +65,33 @@ function SelectPerson() {
       <>
         <Top></Top>
         <div className="container text-center">
+          <div className="row text-center">
+            <div className="col-4">상세보기 </div>
+            <div className="col-4">선별여부 </div>
+            <div className="col-4">지원사유 </div>
+          </div>
+          <hr />
           {items.map((item) => (
-            <div>
-              {item.username}
-              <button>상세보기</button>
-              <input
-                type="checkbox"
-                onChange={checkboxEventHandler}
-                checked={item.selectPerson}
-                value={[item.id, item.reason, item.userId, item.username]}
-              ></input>
+            <div className="row text-center">
+              <div className="col-4">
+                {item.username}
+                <Link className="btn btn-light" to={`/mypage/${item.userId}`}>
+                  상세보기
+                </Link>
+              </div>
+              <div className="col-4">
+                <input
+                  type="checkbox"
+                  onChange={checkboxEventHandler}
+                  checked={item.selectPerson}
+                  value={[item.id, item.reason, item.userId, item.username]}
+                ></input>
+              </div>
+              <div className="col-4">
+                <input type="text" readOnly="true" value={item.reason}></input>
+              </div>
+
+              <hr />
             </div>
           ))}
           <div>
