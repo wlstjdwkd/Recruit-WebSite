@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Slf4j
 @Service
@@ -25,14 +24,14 @@ public class AppliService {
         return appliRepository.findByPostId(id);
     }
 
-    public Optional<AppliEntity> update(final AppliEntity entity){
+    public List<AppliEntity> update(final AppliEntity entity){
         if(appliRepository.existsById(entity.getId())){
             appliRepository.save(entity);
         }
         else{
             throw new RuntimeException("Unknown id");
         }
-        return appliRepository.findById(entity.getId());
+        return appliRepository.findByPostId(entity.getPostId());
     }
 
     public void validate(final AppliEntity entity){

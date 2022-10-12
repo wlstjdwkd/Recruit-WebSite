@@ -66,7 +66,7 @@ public class AppliController {
         try{
             AppliEntity entity = AppliDTO.toEntity(dto);
             System.out.println("updateCheck entity : "+ entity);
-            Optional<AppliEntity> entities = appliService.update(entity);
+            List<AppliEntity> entities = appliService.update(entity);
             List<AppliDTO> dtos = entities.stream().map(AppliDTO::new).collect(Collectors.toList());
             ResponseDTO<AppliDTO> response = ResponseDTO.<AppliDTO>builder().data(dtos).build();
 
