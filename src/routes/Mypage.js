@@ -5,12 +5,12 @@ import { mypage } from "../service/ApiService";
 
 function Mypage() {
   const userId = useParams();
-  const [items, setItems] = useState(null);
+  const [items, setItems] = useState("");
   const loginId = localStorage.getItem("USERID");
   const req = { id: userId.id };
   useEffect(() => {
     mypage(req).then((items) => {
-      setItems(items);
+      setItems(items[0]);
     });
   }, []);
   if (items) {
@@ -20,19 +20,19 @@ function Mypage() {
         <div className="container">
           <h2>마이 페이지</h2>
           <dt>아이디</dt>
-          <input type="text" readOnly="true" value={items[0].userId}></input>
+          <input type="text" readOnly="true" value={items.userId}></input>
           {/* <dt>비밀번호</dt>
-          <input type="text" readOnly="true" value={items[0].password}></input> */}
+          <input type="text" readOnly="true" value={items.password}></input> */}
           <dt>성명</dt>
-          <input type="text" readOnly="true" value={items[0].username}></input>
+          <input type="text" readOnly="true" value={items.username}></input>
           <dt>이메일</dt>
-          <input type="text" readOnly="true" value={items[0].email}></input>
+          <input type="text" readOnly="true" value={items.email}></input>
           <dt>전화번호</dt>
-          <input type="text" readOnly="true" value={items[0].phone}></input>
+          <input type="text" readOnly="true" value={items.phone}></input>
           <dt>사용 기술</dt>
-          <input type="text" readOnly="true" value={items[0].technic}></input>
+          <input type="text" readOnly="true" value={items.technic}></input>
           <dt>자기 소갯말</dt>
-          <input type="text" readOnly="true" value={items[0].intro}></input>
+          <input type="text" readOnly="true" value={items.intro}></input>
           <div>
             {userId.id === loginId ? (
               <button type="button" class="btn-warning">
