@@ -1,7 +1,6 @@
 import "../App.css";
 import React from "react";
 import { Link } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
 
 const ACCESS_TOKEN = "ACCESS_TOKEN";
 
@@ -33,11 +32,6 @@ function Top() {
             </ul>
           ) : (
             <ul className="nav justify-content-end">
-              <li className="nav-item">
-                <Link className="nav-link btn btn-light" to="/selectPerson">
-                  지원 현황
-                </Link>
-              </li>
               <li className="nav-item">
                 <Link
                   className="nav-link btn btn-light"

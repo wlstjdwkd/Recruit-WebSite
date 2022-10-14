@@ -4,8 +4,6 @@ import { postCreate } from "../service/ApiService";
 
 function PostCreate() {
   const [title, setTitle] = useState("");
-  //일단 이미지 보류
-  const [tempFile, setTempFile] = useState();
   const [technic, setTechnic] = useState("");
   const [region, setRegion] = useState("");
   const [person, setPerson] = useState("");
@@ -24,7 +22,6 @@ function PostCreate() {
     };
 
     postCreate(req).then((res) => {
-      console.log(req);
       window.location.href = "/";
     });
   };
@@ -38,6 +35,7 @@ function PostCreate() {
           onSubmit={(e) => {
             onCreate(e);
           }}
+          // encType="multipart/form-data"
         >
           <div className="row">
             <div className="col-6">
@@ -49,13 +47,7 @@ function PostCreate() {
                 }}
                 placeholder="프로젝트 명을 입력해 주세요."
               />
-              <dt>대표 이미지</dt>
-              <input
-                type="file"
-                onChange={(e) => {
-                  setTempFile(e.target.value);
-                }}
-              />
+
               <dt>기술 스택</dt>
               <input
                 type="text"

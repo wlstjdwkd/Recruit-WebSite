@@ -3,9 +3,19 @@ import { API_BASE_URL } from "../app-config";
 const ACCESS_TOKEN = "ACCESS_TOKEN";
 
 export function call(api, method, request) {
-  let headers = new Headers({
-    "Content-Type": "application/json",
-  });
+  let headers;
+  if (api === "/post" && method === "POST") {
+    console.log("multipart");
+    headers = new Headers({
+      // "Content-Type": "multipart/form-data",
+      "Content-Type": "application/json",
+    });
+  } else {
+    headers = new Headers({
+      "Content-Type": "application/json",
+    });
+  }
+
   const accessToken = localStorage.getItem(ACCESS_TOKEN);
   if (accessToken) {
     headers.append("Authorization", "Bearer " + accessToken);
@@ -97,7 +107,12 @@ export function mypage(memberDTO) {
 
 //메인페이지 조회
 export function retrieveMain() {
-  return call("/post", "GET", null)
+  return call("/post", "GET", null).then((response) => response.data);
+}
+
+//지원현황 모집글 조회
+export function retrieveSelectMain() {
+  return call("/post/select", "GET", null)
     .then((response) => response.data)
     .catch((error) => {
       console.log("Oops!");

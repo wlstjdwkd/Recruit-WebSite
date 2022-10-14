@@ -1,5 +1,6 @@
 import React from "react";
 import App from "./App";
+import AppliMain from "./routes/AppliMain";
 import Signup from "./routes/Signup";
 import Login from "./routes/Login";
 import PostCreate from "./routes/PostCreate";
@@ -14,6 +15,7 @@ function AppRouter() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<App />}></Route>
+        <Route path="/appliMain" element={<AppliMain />}></Route>
         <Route path="/signup" element={<Signup />}></Route>
         <Route path="/login" element={<Login />}></Route>
         <Route path="/mypage/:id" element={<Mypage />}></Route>
