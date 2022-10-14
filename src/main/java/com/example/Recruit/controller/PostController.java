@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 import java.util.Optional;
@@ -22,8 +23,9 @@ public class PostController {
     private PostService postService;
 
     @PostMapping
-    public ResponseEntity<?> createPost(@AuthenticationPrincipal String userId, @RequestBody PostDTO dto){
+    public ResponseEntity<?> createPost(@AuthenticationPrincipal String userId, @RequestBody PostDTO dto) throws Exception{
         try{
+            System.out.println("back createPost");
             //dto를 이용해 테이블에 저장하기 위한 entity 생성
             PostEntity entity = PostDTO.toEntity(dto);
             entity.setId(null);
@@ -58,6 +60,17 @@ public class PostController {
         //HTTP 200
         return ResponseEntity.ok().body(response);
     }
+
+    @GetMapping("/select")
+    public ResponseEntity<?> retrieveSelect(@AuthenticationPrincipal String userId){
+        List<PostEntity> entities = postService.retrieveSelect(userId);
+        List<PostDTO> dtos = entities.stream().map(PostDTO::new).collect(Collectors.toList());
+        ResponseDTO<PostDTO> response = ResponseDTO.<PostDTO>builder().data(dtos).build();
+
+        //HTTP 200
+        return ResponseEntity.ok().body(response);
+    }
+
 
     @PostMapping("/postView")
     public ResponseEntity<?> retrievePost(@RequestBody PostDTO postDTO){

@@ -24,7 +24,6 @@ public class PostEntity {
     private String id;
     private String userId;
     private String title;
-    private String image;
     private String region;
     //모집 인원
     private Integer person;

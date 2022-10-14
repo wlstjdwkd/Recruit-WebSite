@@ -5,9 +5,12 @@ import com.example.Recruit.persistence.PostRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 @Slf4j
 @Service
@@ -15,8 +18,10 @@ public class PostService {
     @Autowired
     private PostRepository postRepository;
 
-    public List<PostEntity> create(final PostEntity entity){
+    public List<PostEntity> create(final PostEntity entity) throws Exception{
+
         validate(entity);
+
         postRepository.save(entity);
         return postRepository.findByUserId(entity.getUserId());
     }
@@ -27,6 +32,10 @@ public class PostService {
 
     public Optional<PostEntity> retrievePost(final String id){
         return postRepository.findById(id);
+    }
+
+    public List<PostEntity> retrieveSelect(final String id){
+        return postRepository.findByUserId(id);
     }
 
     public Optional<PostEntity> update (final PostEntity entity){

@@ -81,10 +81,10 @@ public class MemberController {
         }
     }
 
-    //내정보 조회
-    @GetMapping
-    public ResponseEntity<?> retrieveMember(@AuthenticationPrincipal String userId){
-        Optional<MemberEntity> entities = memberService.retrieve(userId);
+    //마이페이지 조회
+    @PostMapping("/mypage")
+    public ResponseEntity<?> retrieveMember(@RequestBody MemberDTO memberDTO){
+        Optional<MemberEntity> entities = memberService.retrieve(memberDTO.getId());
         List<MemberDTO> dtos = entities.stream().map(MemberDTO::new).collect(Collectors.toList());
         ResponseDTO<MemberDTO> response = ResponseDTO.<MemberDTO>builder().data(dtos).build();
 
