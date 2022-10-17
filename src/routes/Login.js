@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import Top from "./Top";
 import { login } from "../service/ApiService";
 
 function Login() {
@@ -20,7 +19,6 @@ function Login() {
 
   return (
     <>
-      <Top></Top>
       <div className="container text-center">
         <h2>로그인</h2>
         <br />

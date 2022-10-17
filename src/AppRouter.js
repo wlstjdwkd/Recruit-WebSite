@@ -8,11 +8,13 @@ import PostView from "./routes/PostView";
 import Application from "./routes/Application";
 import SelectPerson from "./routes/SelectPerson";
 import Mypage from "./routes/Mypage";
+import Top from "./routes/Top";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 function AppRouter() {
   return (
     <BrowserRouter>
+      <Top />
       <Routes>
         <Route path="/" element={<App />}></Route>
         <Route path="/appliMain" element={<AppliMain />}></Route>

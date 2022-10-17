@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import Top from "./Top";
 import { signup } from "../service/ApiService";
 
 function Signup() {
@@ -30,7 +29,6 @@ function Signup() {
 
   return (
     <>
-      <Top></Top>
       <div className="container">
         <h2>회원가입</h2>
         <form

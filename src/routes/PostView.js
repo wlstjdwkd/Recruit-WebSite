@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { retrievePost } from "../service/ApiService";
-import Top from "./Top";
 
 function PostView() {
   let postId = useParams();
@@ -17,7 +16,6 @@ function PostView() {
   if (items) {
     return (
       <>
-        <Top></Top>
         <div className="container">
           <h2 className="text-center">{items.title}</h2>
           <dt>모집 현황</dt>

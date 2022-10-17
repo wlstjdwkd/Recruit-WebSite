@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import Top from "./Top";
 import { postCreate } from "../service/ApiService";
 
 function PostCreate() {
@@ -28,7 +27,6 @@ function PostCreate() {
 
   return (
     <>
-      <Top></Top>
       <div className="container">
         <h2>모임 생성</h2>
         <form

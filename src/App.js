@@ -1,8 +1,7 @@
 import "./App.css";
-import Top from "./routes/Top";
 import React, { useState, useEffect } from "react";
 import { retrieveMain } from "./service/ApiService";
-import { Link, useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 // 메인페이지
 
@@ -17,8 +16,6 @@ function App() {
   if (items) {
     return (
       <>
-        <Top></Top>
-
         <div className="container">
           <h2>모집글</h2>
           <div className="row">

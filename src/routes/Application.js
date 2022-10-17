@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { useLocation } from "react-router-dom";
-import Top from "./Top";
 import { appliCreate } from "../service/ApiService";
 
 function Application() {
@@ -21,7 +20,6 @@ function Application() {
   };
   return (
     <>
-      <Top></Top>
       <div className="container">
         <h3>{title} 프로젝트에 지원하시겠습니까?</h3>
         <form

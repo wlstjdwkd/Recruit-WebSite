@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import Top from "./Top";
 import { retrieveSelectMain } from "../service/ApiService";
 import { Link } from "react-router-dom";
 function AppliMain() {
@@ -11,7 +10,6 @@ function AppliMain() {
   });
   return (
     <>
-      <Top></Top>
       <div className="container">
         <h2>지원 현황</h2>
         <div className="row">

@@ -1,4 +1,4 @@
-import Top from "./Top";
+
 import React, { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import {
@@ -60,7 +60,6 @@ function SelectPerson() {
   if (items) {
     return (
       <>
-        <Top></Top>
         <div className="container text-center">
           <div className="row text-center">
             <div className="col-4">상세보기 </div>

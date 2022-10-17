@@ -1,4 +1,4 @@
-import Top from "./Top";
+
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { mypage } from "../service/ApiService";
@@ -16,7 +16,6 @@ function Mypage() {
   if (items) {
     return (
       <>
-        <Top></Top>
         <div className="container">
           <h2>마이 페이지</h2>
           <dt>아이디</dt>
